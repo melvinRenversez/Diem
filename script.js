@@ -3,13 +3,15 @@ ctx = canvas.getContext('2d');
 
 const content = document.getElementById("content")
 const info = document.getElementById("OkValue")
+const infoShape = document.getElementById("shapeValue")
+const infoVisibility = document.getElementById("visibilityValue")
 
 const nomberStart = 30;
 const nomberClone = 50;
 const maxSize = 30;
 
-var OK = true;
 var view = false
+var OK = true;
 var shape = "cube"
 
 function Particle(x, y, speedX, speedY, size, color, type, intervalReproducrion, lifeTime) {
@@ -142,33 +144,51 @@ var affichageTime;
 
 document.addEventListener("keydown", function(e){
 
+    affichageTime = new Date().getTime()
     console.log(e.keyCode)
     if (e.keyCode === 68){
         if (OK == true){
             OK = false
-            info.innerHTML = " False"
+            info.innerHTML = "False"
             view = true
-            affichageTime = new Date().getTime()
         }else{
             OK = true
-            info.innerHTML = " True"
+            info.innerHTML = "True"
             view = true
-            affichageTime = new Date().getTime()
         }
     }
-
-    if (e.keyCode == 32){
+    
+    if (e.keyCode == 86){
         for (i = 0; i < Particles.length; i++) {
             if (Particles[i].type == "parent"){
                 if (Particles[i].color == "blue"){
                     Particles[i].color = "black"
+                    infoVisibility.innerHTML = "unvisible"
+                    view = true
                 }else{
                     Particles[i].color = "blue"
+                    infoVisibility.innerHTML = "visible"
+                    view = true
                 }
             }
         }
     }
+    
+    if (e.keyCode === 83){
+        if (shape == "cube"){
+            shape = "circle"
+            infoShape.innerHTML = "circle"
+            view = true
+        }else{
+            shape = "cube"  
+            infoShape.innerHTML = "cube"
+            view = true
+        }
+    }
 })
 
+info.innerHTML = "True"
+infoShape.innerHTML = "cube"
+infoVisibility.innerHTML = "visible"
 
 loop()
