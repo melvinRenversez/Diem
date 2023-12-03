@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        color: white;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #000;
+    }
+    canvas{
+        background-color: black;
+    }
+    div{
+        visibility: hidden;
+        position: absolute;
+        transition: 1s;
+    }
+    h1{
+        width: 300px;
+        height: 150px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.3); 
+    }
+</style>
+<body>
+
+    <div id="content">
+        <h1> Duplication : &nbsp<span id="OkValue"></span> </h1>
+    </div>
+
+    <canvas width="1920" height="997"></canvas>
+    <script src="script.js"></script>
+
+</body>
+</html>
