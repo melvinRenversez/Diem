@@ -5,11 +5,13 @@ const content = document.getElementById("content")
 const info = document.getElementById("OkValue")
 const infoShape = document.getElementById("shapeValue")
 const infoVisibility = document.getElementById("visibilityValue")
+const infoExplosion = document.getElementById("explosionValue")
 
 const nomberStart = 30;
 const nomberClone = 50;
 const maxSize = 30;
 
+var explosionForce = 20
 var view = false
 var OK = true;
 var shape = "cube"
@@ -85,8 +87,8 @@ function Particle(x, y, speedX, speedY, size, color, type, intervalReproducrion,
 
 function newParticle(x, y){
 
-    const speedX = (Math.random() - 0.5) * 20
-    const speedY = (Math.random() - 0.5) * 20
+    const speedX = (Math.random() - 0.5) * explosionForce
+    const speedY = (Math.random() - 0.5) * explosionForce
 
     const lifetime = Math.random() * 100
 
@@ -109,24 +111,24 @@ for (var i = 0; i < nomberStart; i++){
 
     const speedX = (Math.random() - 0.5) * 10
     const speedY = (Math.random() - 0.5) * 10
-
+    
     const intervalReproduction = 5000 * (Math.random() + 0.5)
-
+    
     Particles.push(new Particle(x, y, speedX, speedY, 10, "blue", "parent", intervalReproduction))
-
+    
 }
 
 function loop(){
-
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+    
     for (var i = 0; i < Particles.length; i++){
         Particles[i].move()
         Particles[i].draw()
         Particles[i].reproduction()
         Particles[i].life()
     }
-
+    
     if (view == true){
         content.style.visibility = "visible"
         t = new Date().getTime()
@@ -185,10 +187,23 @@ document.addEventListener("keydown", function(e){
             view = true
         }
     }
+
+    if (e.keyCode === 38){
+        explosionForce++
+        view = true
+        infoExplosion.innerHTML = explosionForce
+    }
+
+    if (e.keyCode === 40){
+        explosionForce--
+        view = true
+        infoExplosion.innerHTML = explosionForce
+    }
 })
 
 info.innerHTML = "True"
 infoShape.innerHTML = "cube"
 infoVisibility.innerHTML = "visible"
+infoExplosion.innerHTML = explosionForce
 
 loop()
