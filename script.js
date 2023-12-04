@@ -7,7 +7,7 @@ const infoShape = document.getElementById("shapeValue")
 const infoVisibility = document.getElementById("visibilityValue")
 const infoExplosion = document.getElementById("explosionValue")
 
-const nomberStart = 30;
+const nomberStart = 20;
 const nomberClone = 50;
 const maxSize = 30;
 
@@ -207,3 +207,4 @@ infoVisibility.innerHTML = "visible"
 infoExplosion.innerHTML = explosionForce
 
 loop()
+console.log(Particles)
